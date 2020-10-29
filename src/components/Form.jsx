@@ -7,14 +7,20 @@ class Form extends Component {
 
   handleChange = (event) => this.setState({ text: event.target.value });
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ text: "" });
+  };
+
   render() {
     const { onSubmit } = this.props;
     return (
       <div>
         <form
-          onSubmit={() => {
+          onSubmit={(e) => {
             const text = this.state.text;
             onSubmit(text);
+            this.handleSubmit(e);
           }}
         >
           <input
